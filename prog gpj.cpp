@@ -225,7 +225,7 @@ public:
                 cout << "To add your account, please input the date that the you became a member(in the format DD / MM / YYYY)\n";
                 //check whether day,month,year fit to the range
                 do {
-                    cout << "DD\n";
+                    cout << "DD(Day): ";
                     cin >> k;
                     if (!cin.fail() && k > 0 && k <= 30) {
                         break;
@@ -237,7 +237,7 @@ public:
                     }
                 } while (1);
                 do {
-                    cout << "MM";
+                    cout << "MM(Month): ";
                     cin >> b;
                     if (!cin.fail() && b > 0 && b <= 12) {
                         break;
@@ -249,7 +249,7 @@ public:
                     }
                 } while (1);
                 do {
-                    cout << "YYYY";
+                    cout << "YYYY(Year): ";
                     cin >> c;
                     if (!cin.fail() && c > 1970 && c <= 2024) {
                         break;
@@ -286,12 +286,12 @@ public:
         }
         else
         {
-            cout << "would you want to delect this new account from system? 'y'or'n'";
+            cout << "would you want to delete this new account from system? 'y'or'n'";
             char check2;
             cin >> check2;
             if (check2 == 'y')
             {
-                cout << "successful delect!\n";
+                cout << "successful delete!\n";
                 a = a - 1;
                 //delect position customer with閳?閳ユ獌nd swap the last customer to the position.
                 for (int i = 0; i <= 30; i++) {
@@ -396,7 +396,6 @@ public:
             b = 1;
         }
         cout << "choose a category of your gift.(A/B/C/D):\n";
-        cout << "giftid" << "\t" << "description" << "\t" << "price" << "\t" << "require" << "\t" << "need extra money?" << endl;
         char f;
         int a[15] = { 0 };
         int d[15] = { 0 };
@@ -407,6 +406,7 @@ public:
         switch (f)
         {
         case 'A':
+            cout << "giftid" << "\t" << "description" << setw(18) << "price" << setw(10) << "require" << "\t" << "need extra money?" << endl;
 
             for (int j = 0; j < 3; j++) {
                 a[j] = require[j];
@@ -440,6 +440,7 @@ public:
             break;
 
         case 'B':
+            cout << "giftid" << "\t" << "description" << setw(18) << "price" << setw(10) << "require" << "\t" << "need extra money?" << endl;
             for (int j = 3; j < 8; j++)
             {
                 a[j] = require[j];
@@ -472,6 +473,7 @@ public:
             cout << endl;
             break;
         case 'C':
+            cout << "giftid" << "\t" << "description" << setw(18) << "price" << setw(10) << "require" << "\t" << "need extra money?" << endl;
             for (int j = 8; j < 12; j++) {
                 a[j] = require[j];
             }
@@ -503,7 +505,7 @@ public:
             cout << endl;
             break;
         case 'D':
-
+            cout << "giftid" << "\t" << "description" << setw(18) << "price" << setw(10) << "require" << "\t" << "need extra money?" << endl;
             for (int j = 12; j < 15; j++) {
                 a[j] = require[j];
             }
@@ -541,7 +543,7 @@ public:
     }
 
     void choose() {//select the gift for redemption
-        cout << "input gift ID:\n";
+        cout << "\ninput gift ID:\n";
         float b;
         int extra = 0;
         if (Rank[pos] == 'G') {
@@ -574,7 +576,7 @@ public:
                 else { same = 0; }
             }
             if (same == 0) {
-                cout << "Error, please input again!";
+                cout << "Error, please input again!\n";
                 if (i == 3) { Menu(); }
             }
             else {
@@ -613,6 +615,7 @@ public:
         bool valid = false;
 
         do {
+            cout << "Enter 'N' to Exit this program or 'Y' to move on Credit \n";
             cout << "Please enter 'Y' or 'N': ";
             cin >> u;
 
@@ -818,20 +821,29 @@ public:
 
     void Menu()
     {
-        cout << "It is our priviledge to invite you to engage in the Gigt Redemption activity!! For the sake of prompting comsumption. \nOur enterprise launched this redemption system. Each of your purchase will take account to CCpoints, which could be used to redeem delicated presents.The detailed information is as fellow. Notice:You should initialize the starting data first. \n";
-        cout << "*** Main Menu *** \n [1] Load Starting Data\n [2] Show Records\n [3] Edit Customers\n [4] Enter Customer View\n [5] Show Transaction History \n [6] Credits and Exit \n* *************** \nOption(1 - 6) :";
-        int b;
-        cin >> b;
-        switch (b) {
-        case 1:load(); break;
-        case 2: record(); break;
-        case 3:edit_costomer(); break;
-        case 4: custome_log();
-            custome_view(); break;
-        case 5:history(); break;
-        case 6:edit(); break;
-        default:break;
-        }
+        char opt;
+int type[20]{ 1,2,3,4,5,6 };//delete the value to close the option if it has bugs
+
+cout << "*****************\n"<<"Welcome Message designed by your group\n" << "***Main Menu***" << endl;
+
+cout << "[" << type[0] << "]" << "Load Starting Data\n" << "[" << type[1] << "]" << "Show Records\n" //show option 
+    << "[" << type[2] << "]" << "Edit Customers\n" << "[" << type[3] << "]" << "Enter Customer View\n"
+    << "[" << type[4] << "]" << "Show Transaction History\n" << "[" << type[5] << "]" << "Credits and Exit\n" << "*****************" << endl;
+cout << "Option(1-6): " << endl;//show total of options
+cin >> opt;
+switch (opt) 
+{
+case '1':load()         ; break;
+case '2': record()      ; break;
+case '3':edit_costomer(); break;
+case '4': custome_log() ;
+       custome_view() ; break;
+case '5':history()      ; break;
+case '6':edit()         ; break;
+default:
+    cout << "No option " << opt << endl;//checking
+    break;
+}
     }
 private:
     char giftid[15][4];
@@ -864,18 +876,7 @@ int main()
 
     redemption sys;
     sys.setsize(150, 150);
-    cout << "It is our priviledge to invite you to engage in the Gigt Redemption activity!! For the sake of prompting comsumption. \nOur enterprise launched this redemption system. Each of your purchase will take account to CCpoints, which could be used to redeem delicated presents . The detailed information is as fellow. Notice:You should initialize the starting data first. \n";
-    cout << "*** Main Menu *** \n [1] Load Starting Data\n [2] Show Records\n [3] Edit Customers\n [4] Enter Customer View\n[5] Show Transaction History \n[6] Credits and Exit \n* *************** \nOption(1 - 6) :";
-    int c;//showMainMenu();
-    cin >> c;
-    while (true) {
-        if (c == 1)break;
-        else {
-            cout << "Erro! Please load the starting data first!";
-            cin >> c;
-        }
-    }//check untill user cin 1 to load the data
-
+    void Menu();
     sys.load();
     system("pause");
     return 0;
