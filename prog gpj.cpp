@@ -177,10 +177,10 @@ public:
             cout << endl;
         }
         cout << endl;
-        cout << "giftid" << "\t";
-        cout << "description";
+        cout << "Giftid" << "\t";
+        cout << "Description";
         for (int i = 1; i <= 30; i++) { cout << " "; }
-        cout << "\t" << " price" << "\t" << " require";
+        cout << setw(12) << " Price" << setw(9) << " Require";
         cout << endl;
         for (int j = 0; j < 15; j++) {
             cout << giftid[j] << "\t";
@@ -216,7 +216,7 @@ public:
         }
         if (same == 0)
         {
-            cout << "would you want to add this new account into system? 'y'or'n'";
+            cout << "Would you want to add this new account into system? 'y'or'n'";
             char check;
             cin >> check;
             if (check == 'y') {
@@ -286,12 +286,12 @@ public:
         }
         else
         {
-            cout << "would you want to delect this new account from system? 'y'or'n'";
+            cout << "Would you want to delete this new account from system? 'y'or'n'";
             char check2;
             cin >> check2;
             if (check2 == 'y')
             {
-                cout << "successful delect!\n";
+                cout << "successful delete!\n";
                 a = a - 1;
                 //delect position customer with閳?閳ユ獌nd swap the last customer to the position.
                 for (int i = 0; i <= 30; i++) {
@@ -597,13 +597,13 @@ public:
             else { break; }
         }
         int  use_CCpoint = 0;
-        if (k < require[pos_g]) {
+        if (k < require[pos_g]*b) {
             extra = price[pos_g] - round(require[pos_g] * b) * 0.2;
             His_Rem_E[pos_g][0][0] = His_Rem_E[pos_g][0][0] + 1;
             His_Rem_E[pos_g][0][His_Rem[pos_g][0][0]] = extra;
             use_CCpoint = k;
         }
-        cout << "this is " << extra;
+       
 
         if (k >= require[pos_g]) {
             use_CCpoint = require[pos_g];
